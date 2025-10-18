@@ -7,6 +7,7 @@ import com.example.ecommerce.data.repository.FirebaseAuthRepository
 import com.example.ecommerce.data.repository.LocalLocalProductRepo
 import com.example.ecommerce.data.repository.ProductRepositoryImpl
 import com.example.ecommerce.data.repository.UserPreferenceRepository
+import com.example.ecommerce.domain.repo.ProductRepository
 import com.example.ecommerce.domain.usecase.firebase_usecases.ForgetPasswordUseCase
 import com.example.ecommerce.domain.usecase.preference_data_usecases.GetUserPreferencesUseCase
 import com.example.ecommerce.domain.usecase.firebase_usecases.LoginUseCase
@@ -105,9 +106,10 @@ object Module{
     }
     @Provides
     @Singleton
-    fun provideProductRepositoryImpl(networkModule:NetworkModule): ProductRepositoryImpl {
+    fun provideProductRepositoryImpl(networkModule:NetworkModule): ProductRepository {
         return ProductRepositoryImpl(networkModule)
     }
+
 
 
 

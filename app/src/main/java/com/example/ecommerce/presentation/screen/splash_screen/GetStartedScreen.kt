@@ -1,4 +1,4 @@
-package com.example.ecommerce.presentation.screen
+package com.example.ecommerce.presentation.screen.splash_screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

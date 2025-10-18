@@ -1,13 +1,10 @@
 package com.example.ecommerce.data.repository
 
-import androidx.compose.ui.geometry.Rect
+import com.example.ecommerce.domain.model.ResultIs
 import com.example.ecommerce.domain.repo.AuthRepo
 import com.example.ecommerce.domain.repo.AuthResultState
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.GoogleAuthProvider
-import com.example.ecommerce.domain.model.ResultIs
 import kotlinx.coroutines.tasks.await
 
 class FirebaseAuthRepository(

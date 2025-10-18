@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.ecommerce.R
 import com.example.ecommerce.navigation.NavRouts
-import com.example.masshcet.presentation.userPreferencesDataStore.UserPreferencesViewModel
+import com.example.ecommerce.presentation.userPreferencesDataStore.UserPreferencesViewModel
 import kotlinx.coroutines.delay
 
 
@@ -36,7 +36,7 @@ fun SplashScreenA (
         delay(3000)
 
         nextScreen = if (userPState.isLoggedIn){
-            NavRouts.HomeScreen
+            NavRouts.ProductListScreen
         }else{
             if (userPState.isFirstTimeLogin){
                 NavRouts.OnBoardingScreen

@@ -40,7 +40,7 @@ import com.example.ecommerce.presentation.uiComponents.CustomInputField
 import com.example.ecommerce.presentation.uiComponents.CustomPasswordField
 import com.example.ecommerce.presentation.uiComponents.CustomSubmitButton
 import com.example.ecommerce.presentation.uiComponents.HeadingText
-import com.example.masshcet.presentation.userPreferencesDataStore.UserPreferencesViewModel
+import com.example.ecommerce.presentation.userPreferencesDataStore.UserPreferencesViewModel
 
 
 @Composable
@@ -73,7 +73,7 @@ fun LoginScreen(
             }
             is ResultIs.Success<*> -> {
                 Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
-                navController.navigate(NavRouts.HomeScreen) {
+                navController.navigate(NavRouts.ProductListScreen) {
                     popUpTo(NavRouts.LoginScreen) { inclusive = true }
                 }
                 userPreferencesViewModel.setLoggedIn(true)

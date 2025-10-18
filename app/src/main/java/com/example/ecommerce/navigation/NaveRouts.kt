@@ -35,7 +35,10 @@ sealed class NavRouts{
     object SearchProductScreen: NavRouts()
 
     @Serializable
-    object ProductDetailScreen : NavRouts()
+    object ProductListScreen: NavRouts()
+
+    @Serializable
+    data class ProductDetailScreen(val productId:Int) : NavRouts()
 
 // Check Out Screen
     @Serializable

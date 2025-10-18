@@ -72,6 +72,7 @@ import com.example.ecommerce.data.local.staticData.ProductCategory
 import com.example.ecommerce.domain.model.product_api_models.Product
 import com.example.ecommerce.domain.model.ResultIs
 import com.example.ecommerce.domain.model.UiState
+import com.example.ecommerce.presentation.screen.home.HomeScreen
 import com.example.ecommerce.presentation.screen.home.ProductListViewModel
 import com.example.ecommerce.presentation.uiComponents.searchBar.EnhancedCustomSearchBar
 import com.example.ecommerce.presentation.uiComponents.ui_cards.ProductDetailCard
@@ -82,7 +83,6 @@ fun SearchProductScreen(
     navController: NavController,
     viewModel: SearchViewModel = hiltViewModel(),
     productListViewModel: ProductListViewModel =hiltViewModel()
-
 ) {
     Log.d("SearchProductScreen","Start: SearchProductScreen")
 
@@ -99,8 +99,6 @@ fun SearchProductScreen(
 
         }
     ) { innerPadding->
-
-
 
         Column (
             Modifier
@@ -126,35 +124,6 @@ fun SearchProductScreen(
             Spacer(Modifier.height(8.dp))
 
             when (productsState) {
-             /*   is UiState.Loading -> {LoadingIndicator(modifier = Modifier.weight(1f))
-                    Log.d("SearchProductScreen","LoadingIndicator")
-                }
-                is UiState.Error ->{
-                    Log.d("SearchProductScreen","ErrorMessage")
-                    ErrorMessage(
-                        message = (searchState as UiState.Error).message,
-                        modifier = Modifier.weight(1f),
-                        onRetry = { viewModel.searchProducts() }
-                    )}
-
-                is UiState.Success -> {
-                    val products = (searchState as UiState.Success).data
-                    if (products.isEmpty()) {
-                        Log.d("SearchProductScreen","EmptySearchResults")
-                        EmptySearchResults(
-                            searchQuery = searchQuery,
-                            modifier = Modifier.weight(1f)
-                        )
-                    } else {
-                        Log.d("SearchProductScreen","ProductGrid")
-
-                        ProductGrid(
-                            productLocals = products,
-                            onProductClick = {},
-                            modifier = Modifier.weight(1f)
-                        )
-                    }
-                }*/
 
                 is ResultIs.Error -> {
                     Log.d("SearchProductScreen","ErrorMessage")
@@ -163,8 +132,7 @@ fun SearchProductScreen(
                         modifier = Modifier.weight(1f),
                         onRetry = { viewModel.searchProducts() }
                     )}
-
-                ResultIs.Idle -> TODO()
+                ResultIs.Idle ->{ HomeScreen(navController)}
                 ResultIs.Loading -> {LoadingIndicator(modifier = Modifier.weight(1f))
                     Log.d("SearchProductScreen","LoadingIndicator")
                 }
@@ -195,7 +163,7 @@ fun SearchProductScreen(
 
 
 @Composable
-fun ProductList(categoryList: List<ProductCategory>) {
+fun ProductListScreen(categoryList: List<ProductCategory>) {
     LazyColumn(
         modifier= Modifier.fillMaxWidth().padding(horizontal = 8.dp)
     ) {
@@ -402,6 +370,7 @@ fun ProductCard(
         }
     }
 }
+
 @Composable
 fun LoadingIndicator(
     modifier: Modifier = Modifier
@@ -571,8 +540,7 @@ fun EmptySearchResults(
             )
         }
 
-       /* Column(
-            modifier = Modifier.fillMaxWidth(),
+       /* Column (modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             searchTips.forEach { tip ->

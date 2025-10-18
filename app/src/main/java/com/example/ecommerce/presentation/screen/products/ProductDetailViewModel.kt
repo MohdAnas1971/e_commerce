@@ -78,7 +78,7 @@ class ProductDetailViewModel : ViewModel() {
         if (currentProduct.colors.isNotEmpty() && color == null) return false
         if (currentProduct.sizes.isNotEmpty() && size == null) return false
 
-        // Here you would typically save to local storage or state
+        // Here you would typically save it to local storage or state
         return true
     }
 }

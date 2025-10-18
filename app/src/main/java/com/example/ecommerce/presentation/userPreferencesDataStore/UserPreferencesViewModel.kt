@@ -1,4 +1,4 @@
-package com.example.masshcet.presentation.userPreferencesDataStore
+package com.example.ecommerce.presentation.userPreferencesDataStore
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
