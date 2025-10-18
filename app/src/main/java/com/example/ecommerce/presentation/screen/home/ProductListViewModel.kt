@@ -19,7 +19,6 @@ import javax.inject.Inject
 // ProductListViewModel.kt
 @HiltViewModel
 class ProductListViewModel @Inject constructor(
-
     private val productRepositoryImpl: ProductRepositoryImpl
 ) : ViewModel() {
 
