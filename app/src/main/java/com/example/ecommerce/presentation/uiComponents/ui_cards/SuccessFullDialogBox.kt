@@ -194,7 +194,7 @@ private fun drawStar(center: Offset, size: Float, color: Color) {
         val y = center.y + radius * kotlin.math.sin(angle).toFloat()
 
         if (i > 0) {
-            // Draw line from previous point to current point
+            // Draw the line from previous point to current point
             val prevAngle = Math.PI / points * (i - 1) - Math.PI / 2
             val prevRadius = if ((i - 1) % 2 == 0) outerRadius else innerRadius
             val prevX = center.x + prevRadius * kotlin.math.cos(prevAngle).toFloat()
@@ -207,11 +207,10 @@ private fun drawStar(center: Offset, size: Float, color: Color) {
 
     // For simplicity, we'll just draw a circle as a placeholder for stars
     // In a production app, you'd implement proper star drawing
-   /* androidx.compose.ui.graphics.drawscope.drawCircle(
+   /* androidx.compose.ui.graphics.draws cope.drawCircle(
         color = color,
         radius = size / 2,
-        center = center
-    )*/
+        center = center)*/
 }
 
 @Composable

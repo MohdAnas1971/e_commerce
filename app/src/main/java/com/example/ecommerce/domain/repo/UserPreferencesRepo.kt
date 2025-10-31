@@ -8,7 +8,7 @@ interface UserPreferencesRepo {
 
     val isLoggedIn: Flow<Boolean>
 
-    suspend fun setFirstTimeLogin(isFirsTime: Boolean)
+    suspend fun setFirstTimeLogin(isFirstTime: Boolean)
 
     suspend fun setLoggedIn(isLoggedIn: Boolean)
 }

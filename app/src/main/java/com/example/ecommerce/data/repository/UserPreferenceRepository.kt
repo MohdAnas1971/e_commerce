@@ -7,16 +7,15 @@ import kotlinx.coroutines.flow.Flow
 class UserPreferenceRepository(
     private val userPreferencesDataStore: UserPreferencesDataStore
 ): UserPreferencesRepo {
-    override val isFirstTimeLogin: Flow<Boolean> =userPreferencesDataStore.isFirstTimeLogin
+    override val isFirstTimeLogin: Flow<Boolean> = userPreferencesDataStore.isFirstTimeLogin
 
-    override val isLoggedIn: Flow<Boolean> =userPreferencesDataStore.isLoggedIn
-
-    override suspend fun setFirstTimeLogin(isFirsTime: Boolean) {
-        userPreferencesDataStore.setFirstTimeLogin(isFirsTime)
+    override val isLoggedIn: Flow<Boolean> = userPreferencesDataStore.isLoggedIn
+    override suspend fun setFirstTimeLogin(isFirstTime: Boolean) {
+        userPreferencesDataStore.setFirstTimeLogin(isFirstTime)
     }
-
     override suspend fun setLoggedIn(isLoggedIn: Boolean) {
         userPreferencesDataStore.setLoggedIn(isLoggedIn)
     }
+
 
 }

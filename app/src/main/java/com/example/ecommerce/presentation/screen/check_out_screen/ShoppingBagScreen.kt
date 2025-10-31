@@ -1,4 +1,4 @@
-package com.example.ecommerce.presentation.screen.checkOut
+package com.example.ecommerce.presentation.screen.check_out_screen
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*

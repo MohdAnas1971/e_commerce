@@ -1,7 +1,8 @@
-package com.example.ecommerce.presentation.screen.products
+package com.example.ecommerce.presentation.screen.products_screens
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -30,22 +31,31 @@ import androidx.navigation.NavHostController
 import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.example.ecommerce.domain.model.ResultIs
+import com.example.ecommerce.domain.model.Result
 import com.example.ecommerce.domain.model.product_api_models.Product
-import com.example.ecommerce.presentation.screen.checkOut.StarRating
-
+import com.example.ecommerce.presentation.screen.cart.CartViewModel
+import com.example.ecommerce.presentation.screen.wishlist_screen.WishListViewModel
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductDetailScreen(
   navController: NavHostController,
   productId: Int,
-  productViewModel: ProductViewModel = hiltViewModel()
+  productViewModel: ProductViewModel = hiltViewModel(),
+  wishlistViewModel: WishListViewModel = hiltViewModel(),
+  cartViewModel: CartViewModel = hiltViewModel()
 ) {
-  val productsState by productViewModel.productState.collectAsState()
+  val productsState by productViewModel.productsState.collectAsState()
   var selectedImageIndex by remember { mutableIntStateOf(0) }
-  var isFavorite by remember { mutableStateOf(false) }
   val context = LocalContext.current
+  val coroutineScope = rememberCoroutineScope()
+  var isFavorite by remember { mutableStateOf(false) }
+
+  // Check if product is in wishlist
+  LaunchedEffect(productId) {
+    isFavorite = wishlistViewModel.isInWishlist(productId)
+  }
 
   // Share function
   @SuppressLint("DefaultLocale")
@@ -55,6 +65,7 @@ fun ProductDetailScreen(
             "Price: ₹${String.format("%.0f", product.price * 83)}\n" +
             "Rating: ${String.format("%.1f", product.rating)} stars\n\n" +
             "Get it now on EcoMart!"
+
     val shareIntent = Intent().apply {
       action = Intent.ACTION_SEND
       type = "text/plain"
@@ -68,8 +79,7 @@ fun ProductDetailScreen(
 
   // Find the product by ID
   val product = when (val state = productsState) {
-    is ResultIs.Success -> state.data.find { it.id == productId }
-
+    is Result.Success -> state.data.find { it.id == productId }
     else -> null
   }
 
@@ -88,7 +98,19 @@ fun ProductDetailScreen(
           }) {
             Icon(Icons.Default.Share, contentDescription = "Share")
           }
-          IconButton(onClick = { isFavorite = !isFavorite }) {
+          IconButton(onClick = {
+            product?.let { prod ->
+              coroutineScope.launch {
+                if (isFavorite) {
+                  wishlistViewModel.removeFromWishlist(prod.id)
+                  isFavorite = false
+                } else {
+                  wishlistViewModel.addToWishlist(prod)
+                  isFavorite = true
+                }
+              }
+            }
+          }) {
             Icon(
               if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
               contentDescription = "Favorite",
@@ -103,7 +125,7 @@ fun ProductDetailScreen(
     }
   ) { paddingValues ->
     when {
-      productsState is ResultIs.Loading -> {
+      productsState is Result.Loading -> {
         Box(
           modifier = Modifier.fillMaxSize(),
           contentAlignment = Alignment.Center
@@ -141,7 +163,16 @@ fun ProductDetailScreen(
           // Add to Cart Button
           AddToCartSection(
             product = product,
-            onAddToCart = { /* Handle add to cart */ }
+            onAddToCart = {
+                product.let { prod ->
+                    cartViewModel.addToCart(prod, 1)
+                    Toast.makeText(
+                        context,
+                        "${prod.title} added to cart",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
           )
         }
       }
@@ -247,8 +278,6 @@ fun ProductImageGallery(
 @SuppressLint("DefaultLocale")
 @Composable
 private fun ProductDetailsSection(product: Product) {
-
-
   Column(
     modifier = Modifier.padding(16.dp)
   ) {
@@ -262,6 +291,7 @@ private fun ProductDetailsSection(product: Product) {
       )
       Spacer(modifier = Modifier.height(4.dp))
     }
+
     // Title
     Text(
       text = product.title,
@@ -276,7 +306,7 @@ private fun ProductDetailsSection(product: Product) {
     Row(
       verticalAlignment = Alignment.CenterVertically
     ) {
-      StarRating(rating = product.rating.toFloat())
+      StarRating(rating = product.rating, starSize = 20.dp)
       Spacer(modifier = Modifier.width(8.dp))
       Text(
         text = "${String.format("%.1f", product.rating)} (${(product.rating * 100).toInt()} reviews)",
@@ -356,7 +386,6 @@ private fun ProductDetailsSection(product: Product) {
   }
 }
 
-
 @Composable
 private fun AddToCartSection(
   product: Product,
@@ -406,4 +435,3 @@ private fun AddToCartSection(
     }
   }
 }
-

@@ -178,8 +178,8 @@ val SampleProductSamples = listOf(
         imageRes = R.drawable.sport_watch
     ),
     ProductSample(
-        name = "Ethnic Jutti",
-        description = "Handmade ethnic jutti with embroidery.",
+        name = "Ethnic Jutta",
+        description = "Handmade ethnic tutti with embroidery.",
         price = "₹699",
         review = Review(430, 4),
         imageRes = R.drawable.sport_watch

@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.ecommerce.R
-import com.example.ecommerce.domain.model.ResultIs
+import com.example.ecommerce.domain.model.Result
 import com.example.ecommerce.navigation.NavRouts
 import com.example.ecommerce.presentation.theme.PinkDark
 import com.example.ecommerce.presentation.uiComponents.*
@@ -39,21 +39,21 @@ fun SignUpScreen(navController: NavHostController, authViewModel: AuthViewModel)
 
 
     LaunchedEffect(authState) {
-        if(authState!= ResultIs.Loading){
+        if(authState!= Result.Loading){
             isLoading=false
         }
         when (val currentState = authState) {
-            is ResultIs.Error -> {
+            is Result.Failure -> {
                 Toast.makeText(
                     context,
                     "Error:${currentState.message} ❌ SignUp Failed",
                     Toast.LENGTH_SHORT
                 ).show()            }
-            ResultIs.Idle -> {}
-            ResultIs.Loading -> {
+            Result.Idle -> {}
+            Result.Loading -> {
                 isLoading = true
             }
-            is ResultIs.Success<*> -> {
+            is Result.Success<*> -> {
                     Toast.makeText(
                         context,
                         "✅ SignUp Successful",

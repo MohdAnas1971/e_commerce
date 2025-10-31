@@ -1,27 +1,27 @@
 package com.example.ecommerce.domain.repo
 
 
-import com.example.ecommerce.domain.model.ResultIs
+import com.example.ecommerce.domain.model.Result
 
 interface AuthRepo {
-    suspend fun signUp(
+    suspend fun signup(
         email: String,
         password: String,
-    ): ResultIs<String>
+    ): Result<String>
 
     suspend fun login(
         email: String,
         password: String,
-    ): ResultIs<String>
+    ): Result<String>
 
-    fun loginWithGoogle(
+    fun signInWithGoogle(
         idToken: String,
         onResult: (AuthResultState) -> Unit,
     )
 
     suspend fun forgetPassword(
         email: String,
-    ): ResultIs<String>
+    ): Result<String>
 
     fun isLogin(): Boolean
 

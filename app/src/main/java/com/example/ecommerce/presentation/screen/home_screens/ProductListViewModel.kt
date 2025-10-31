@@ -1,4 +1,4 @@
-package com.example.ecommerce.presentation.screen.home
+package com.example.ecommerce.presentation.screen.home_screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,7 @@ import com.example.ecommerce.data.repository.LocalLocalProductRepo
 import com.example.ecommerce.data.repository.ProductRepositoryImpl
 import com.example.ecommerce.domain.model.product_api_models.Product
 import com.example.ecommerce.domain.model.ProductLocal
-import com.example.ecommerce.domain.model.ResultIs
+import com.example.ecommerce.domain.model.Result
 import com.example.ecommerce.domain.model.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,8 +27,8 @@ class ProductListViewModel @Inject constructor(
     private val _localProductsState = MutableStateFlow<UiState<List<ProductLocal>>>(UiState.Loading)
     val localProductsState: StateFlow<UiState<List<ProductLocal>>> = _localProductsState.asStateFlow()
 
-    private val _productsState = MutableStateFlow<ResultIs<List<Product>>>(ResultIs.Idle)
-    val productsState: StateFlow<ResultIs<List<Product>>> = _productsState.asStateFlow()
+    private val _productsState = MutableStateFlow<Result<List<Product>>>(Result.Idle)
+    val productsState: StateFlow<Result<List<Product>>> = _productsState.asStateFlow()
     private val _sortOption = MutableStateFlow(SortOption.RELEVANCE)
     val sortOption: StateFlow<SortOption> = _sortOption.asStateFlow()
 
@@ -45,7 +45,7 @@ class ProductListViewModel @Inject constructor(
 
     fun getProducts() {
 
-        _productsState.value = ResultIs.Loading
+        _productsState.value = Result.Loading
         viewModelScope.launch {
             val currentProducts = productRepositoryImpl.getProducts()
             _productsState.value = currentProducts

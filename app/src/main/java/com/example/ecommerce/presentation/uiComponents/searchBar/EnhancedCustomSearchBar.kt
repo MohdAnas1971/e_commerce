@@ -1,5 +1,6 @@
 package com.example.ecommerce.presentation.uiComponents.searchBar
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
@@ -81,7 +82,7 @@ fun EnhancedCustomSearchBar(
     onClearHistoryItem: ((String) -> Unit)? = null,
     onExpandedChange:(Boolean)-> Unit,
     expanded: Boolean,
-    modifier: Modifier = Modifier,
+    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier,
 ) {
 
     var showSuggestions by remember { mutableStateOf(true) }
@@ -99,7 +100,7 @@ fun EnhancedCustomSearchBar(
         }
     }
 
-    // Close suggestions when query is cleared
+    // Close suggestions when a query is cleared
     LaunchedEffect(query) {
         if (query.isEmpty() && suggestions.isEmpty()) {
             showSuggestions = false
@@ -232,7 +233,7 @@ fun EnhancedCustomSearchBar(
 
                         groupedSuggestions.forEach { (type, typeSuggestions) ->
                             if (typeSuggestions.isNotEmpty()) {
-                                // Header for each suggestion type with clear option for history
+                                // Header for each suggestion type with a clear option for history
                                 item {
                                     Row(
                                         verticalAlignment = Alignment.CenterVertically,
@@ -389,7 +390,7 @@ fun SearchSuggestionItem(
             .clickable(onClick = onClick)
             .padding(vertical = 12.dp, horizontal = 16.dp)
     ) {
-        // Icon based on suggestion type
+        // Icon based on a suggestion type
         Box(
             modifier = Modifier.size(24.dp),
             contentAlignment = Alignment.Center

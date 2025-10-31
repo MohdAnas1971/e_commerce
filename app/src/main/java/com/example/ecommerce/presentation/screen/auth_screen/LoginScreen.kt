@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.ecommerce.R
-import com.example.ecommerce.domain.model.ResultIs
+import com.example.ecommerce.domain.model.Result
 import com.example.ecommerce.navigation.NavRouts
 import com.example.ecommerce.presentation.theme.PinkDark
 import com.example.ecommerce.presentation.uiComponents.ContinueWithAccount
@@ -60,18 +60,18 @@ fun LoginScreen(
     var isLoading by remember { mutableStateOf(false) }
 
     LaunchedEffect(authState) {
-        if(authState!= ResultIs.Loading){
+        if(authState!= Result.Loading){
             isLoading=false
         }
         when (val currentState = authState) {
-            is ResultIs.Error -> {
+            is Result.Failure -> {
                 Toast.makeText(context, currentState.message, Toast.LENGTH_LONG).show()
             }
-            ResultIs.Idle -> {}
-            ResultIs.Loading -> {
+            Result.Idle -> {}
+            Result.Loading -> {
                 isLoading = true
             }
-            is ResultIs.Success<*> -> {
+            is Result.Success<*> -> {
                 Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
                 navController.navigate(NavRouts.ProductListScreen) {
                     popUpTo(NavRouts.LoginScreen) { inclusive = true }

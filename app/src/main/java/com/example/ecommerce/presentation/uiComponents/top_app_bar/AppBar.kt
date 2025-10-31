@@ -1,4 +1,4 @@
-package com.example.ecommerce.presentation.uiComponents
+package com.example.ecommerce.presentation.uiComponents.top_app_bar
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border

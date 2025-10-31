@@ -1,4 +1,4 @@
-package com.example.ecommerce.presentation.screen.home
+package com.example.ecommerce.presentation.screen.home_screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

@@ -1,9 +1,13 @@
 package com.example.ecommerce.domain.model.product_api_models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.serialization.Serializable
 
 @Serializable
+@Entity(tableName = "wishList")
 data class Product(
+    @PrimaryKey
     val id: Int,
     val title: String,
     val description: String,

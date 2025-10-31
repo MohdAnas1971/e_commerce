@@ -1,6 +1,7 @@
-package com.example.ecommerce.presentation.screen.profile
+package com.example.ecommerce.presentation.screen.profile_screen
 
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -89,7 +90,7 @@ fun UserProfileScreen() {
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     LabeledTextField(
-                        label = "Pincode",
+                        label = "Pin-code",
                         value = "450116",
                         keyboardType = KeyboardType.Number
                     )
@@ -141,7 +142,7 @@ fun UserProfileScreen() {
                     Spacer(modifier = Modifier.height(12.dp))
                     LabeledTextField(
                         label = "Account Holder's Name",
-                        value = "Abhiraj Sisodiya",
+                        value = "Jon Doe",
                         leadingIcon = Icons.Default.Person
                     )
                     Spacer(modifier = Modifier.height(12.dp))
@@ -196,7 +197,7 @@ fun LabeledTextField(
     trailingIcon: ImageVector? = null,
     keyboardType: KeyboardType = KeyboardType.Text,
     enabled: Boolean = true,
-    modifier: Modifier = Modifier,
+    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
         Text(

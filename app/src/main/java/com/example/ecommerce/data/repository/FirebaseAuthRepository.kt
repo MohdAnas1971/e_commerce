@@ -1,6 +1,6 @@
 package com.example.ecommerce.data.repository
 
-import com.example.ecommerce.domain.model.ResultIs
+import com.example.ecommerce.domain.model.Result
 import com.example.ecommerce.domain.repo.AuthRepo
 import com.example.ecommerce.domain.repo.AuthResultState
 import com.google.firebase.auth.FirebaseAuth
@@ -12,31 +12,24 @@ class FirebaseAuthRepository(
 ) : AuthRepo {
 
 
-    override suspend fun signUp(
-        email: String,
-        password: String,
-    ): ResultIs<String> {
+    override suspend fun signup(email: String, password: String): Result<String> {
         return try {
             auth.createUserWithEmailAndPassword(email, password).await()
-            ResultIs.Success("SignUp Successful")
-        }catch (e: Exception){
-            return ResultIs.Error(e.message?:"Error:  Unknown error found")
+            Result.Success("SignUp Successful")
+        } catch (e: Exception) {
+            return Result.Failure(e.message ?: "Error:  Unknown error found")
         }
     }
-
-    override suspend fun login(
-        email: String,
-        password: String,
-    ): ResultIs<String> {
+    override suspend fun login(email: String, password: String): Result<String> {
         return try {
-            auth.signInWithEmailAndPassword(email,password).await()
-            ResultIs.Success("Login Successful")
-        }catch (e: Exception){
-            ResultIs.Error(e.message?:"Error: Unknown error found")
+            auth.signInWithEmailAndPassword(email, password).await()
+            Result.Success("Login Successful")
+        } catch (e: Exception) {
+            Result.Failure(e.message ?: "Error: Unknown error found")
         }
     }
 
-    override fun loginWithGoogle(idToken: String, onResult: (AuthResultState) -> Unit) {
+    override fun signInWithGoogle(idToken: String, onResult: (AuthResultState) -> Unit) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
@@ -48,14 +41,12 @@ class FirebaseAuthRepository(
             }
     }
 
-
-
-    override suspend fun forgetPassword(email: String): ResultIs<String> {
+    override suspend fun forgetPassword(email: String): Result<String> {
         return try {
             auth.sendPasswordResetEmail(email).await()
-            ResultIs.Success("Send Email: Done")
-        }catch (e: Exception){
-            ResultIs.Error(e.message?:"Error: Unknown error found")
+            Result.Success("Send Email: Done")
+        } catch (e: Exception) {
+            Result.Failure(e.message ?: "Error: Unknown error found")
         }
     }
 
@@ -66,10 +57,11 @@ class FirebaseAuthRepository(
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val methods = task.result?.signInMethods
-                    onResult(!methods.isNullOrEmpty()) // true if account exists
+                    onResult(!methods.isNullOrEmpty()) // true if an account exists
                 } else {
                     onResult(false)
                 }
             }
     }
+
 }

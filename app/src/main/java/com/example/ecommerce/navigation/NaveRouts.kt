@@ -40,7 +40,25 @@ sealed class NavRouts{
     @Serializable
     data class ProductDetailScreen(val productId:Int) : NavRouts()
 
-// Check Out Screen
+//Wish List Screen
+    @Serializable
+     object  WishListScreen: NavRouts()
+
+    //Cart Screen
+
+    @Serializable
+    object CartScreen: NavRouts()
+
+    //SettingScreen
+    @Serializable
+    object SettingScreen: NavRouts()
+
+//SearchScreen
+
+    @Serializable
+    object SearchScreen: NavRouts()
+
+    // Check Out Screen
     @Serializable
     object CheckoutScreen: NavRouts()
 
@@ -53,5 +71,7 @@ sealed class NavRouts{
     //Profile Screens
     @Serializable
     object UserProfileScreen: NavRouts()
+
+
 
 }

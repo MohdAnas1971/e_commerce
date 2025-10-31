@@ -1,21 +1,9 @@
-package com.example.ecommerce.presentation.screen.products
+package com.example.ecommerce.presentation.screen.search_screen
 
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -26,31 +14,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.TrendingUp
-import androidx.compose.material.icons.filled.ErrorOutline
-import androidx.compose.material.icons.filled.Image
-import androidx.compose.material.icons.filled.Lightbulb
-import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.SearchOff
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.filled.Warning
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilterChip
-import androidx.compose.material3.FilterChipDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -68,14 +35,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.ecommerce.R
-import com.example.ecommerce.data.local.staticData.ProductCategory
-import com.example.ecommerce.domain.model.product_api_models.Product
-import com.example.ecommerce.domain.model.ResultIs
+import com.example.ecommerce.domain.model.Result
 import com.example.ecommerce.domain.model.UiState
-import com.example.ecommerce.presentation.screen.home.HomeScreen
-import com.example.ecommerce.presentation.screen.home.ProductListViewModel
+import com.example.ecommerce.domain.model.product_api_models.Product
+import com.example.ecommerce.navigation.NavRouts
+import com.example.ecommerce.presentation.screen.home_screens.HomeScreen
+import com.example.ecommerce.presentation.screen.home_screens.ProductListViewModel
 import com.example.ecommerce.presentation.uiComponents.searchBar.EnhancedCustomSearchBar
-import com.example.ecommerce.presentation.uiComponents.ui_cards.ProductDetailCard
 
 @Composable
 fun SearchProductScreen(
@@ -125,19 +91,19 @@ fun SearchProductScreen(
 
             when (productsState) {
 
-                is ResultIs.Error -> {
+                is Result.Failure -> {
                     Log.d("SearchProductScreen","ErrorMessage")
                     ErrorMessage(
-                        message = (productsState as ResultIs.Error).message,
+                        message = (productsState as Result.Failure).message,
                         modifier = Modifier.weight(1f),
                         onRetry = { viewModel.searchProducts() }
                     )}
-                ResultIs.Idle ->{ HomeScreen(navController)}
-                ResultIs.Loading -> {LoadingIndicator(modifier = Modifier.weight(1f))
+                Result.Idle ->{ HomeScreen(navController)}
+                Result.Loading -> {LoadingIndicator(modifier = Modifier.weight(1f))
                     Log.d("SearchProductScreen","LoadingIndicator")
                 }
-                is ResultIs.Success<*> -> {
-                    val products = (productsState as ResultIs.Success).data
+                is Result.Success<*> -> {
+                    val products = (productsState as Result.Success).data
                     if (products.isEmpty()) {
                         Log.d("SearchProductScreen","EmptySearchResults")
                         EmptySearchResults(
@@ -149,7 +115,7 @@ fun SearchProductScreen(
 
                         ProductGrid(
                             productLocals = products,
-                            onProductClick = {},
+                            navController,
                             modifier = Modifier.weight(1f)
                         )
                     }
@@ -162,41 +128,14 @@ fun SearchProductScreen(
 
 
 
-@Composable
-fun ProductListScreen(categoryList: List<ProductCategory>) {
-    LazyColumn(
-        modifier= Modifier.fillMaxWidth().padding(horizontal = 8.dp)
-    ) {
-        items(categoryList.chunked(4)){rowItem->
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Column {
-                    ProductDetailCard(136, imagRes = rowItem[0].imagRes)
-                    Spacer(Modifier.height(12.dp))
-                    ProductDetailCard(imagRes = rowItem[1].imagRes)
-                }
-                Column {
-                    ProductDetailCard(imagRes = rowItem[2].imagRes)
-                    Spacer(Modifier.height(12.dp))
-                    ProductDetailCard(136, imagRes = rowItem[3].imagRes)
-                }
-            }
-            Spacer(Modifier.height(12.dp))
-        }
-    }
-}
 
 
 @Composable
 fun ProductGrid(
     productLocals: List<Product>,
-    onProductClick: (String) -> Unit,
+    navController: NavController,
     modifier: Modifier = Modifier,
 ) {
-
-
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 150.dp),
         modifier = modifier.fillMaxWidth(),
@@ -207,7 +146,7 @@ fun ProductGrid(
         items(productLocals) { product ->
             ProductCard(
                 productLocal = product,
-                onClick = { onProductClick(product.id.toString()) }
+                onClick = { navController.navigate(NavRouts.ProductDetailScreen(product.id))}
             )
         }
     }

@@ -1,4 +1,4 @@
-package com.example.ecommerce.presentation.screen.checkOut
+package com.example.ecommerce.presentation.screen.check_out_screen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -17,7 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import com.example.ecommerce.presentation.screen.profile.IconButton
+import com.example.ecommerce.presentation.screen.profile_screen.IconButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,7 +37,7 @@ fun CheckoutScreen() {
                     }
                 }
             )
-        }
+        },
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -278,7 +278,6 @@ fun StarRating(rating: Float) {
         }
     }
 }
-
 @Composable
 fun TotalOrderSection() {
     Card(

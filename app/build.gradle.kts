@@ -9,6 +9,9 @@ plugins {
     id("com.google.dagger.hilt.android")
     ///Auth
     id("com.google.gms.google-services")
+
+    //Room Database
+    id("androidx.room")
 }
 
 android {
@@ -50,6 +53,10 @@ android {
 
     buildFeatures {
         compose = true
+    }
+
+    room {
+        schemaDirectory("$projectDir/schemas")
     }
 
 }
@@ -107,5 +114,32 @@ dependencies {
     // coil
     implementation("io.coil-kt.coil3:coil-compose:3.0.3")
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.3")
+
+    //Room Database
+    val roomVersion = "2.8.2"
+
+    implementation("androidx.room:room-runtime:$roomVersion")
+
+    // If this project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
+    // See Add the KSP plugin to your project
+    ksp("androidx.room:room-compiler:$roomVersion")
+
+    // If this project only uses a Java source, use the Java annotationProcessor
+    // No additional plugins are necessary
+   // annotationProcessor("androidx.room:room-compiler:$room_version")
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$roomVersion")
+
+
+    // optional - Guava support for Room, including Optional and ListenableFuture
+   // implementation("androidx.room:room-guava:$room_version")
+
+    // optional - Test helpers
+    testImplementation("androidx.room:room-testing:$roomVersion")
+
+    // optional - Paging 3 Integration
+    implementation("androidx.room:room-paging:$roomVersion")
+
 
 }

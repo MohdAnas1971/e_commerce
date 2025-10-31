@@ -15,8 +15,7 @@ class UserPreferencesDataStore(private val context: Context) {
         private val IS_FIRST_TIME_LOGIN = booleanPreferencesKey("is_first_time_login")
         private val IS_LOGGED_IN = booleanPreferencesKey("is_logged_in")
     }
-    val isFirstTimeLogin:
-            Flow<Boolean> = context.dataStore.data.map { preferences ->
+    val isFirstTimeLogin: Flow<Boolean> = context.dataStore.data.map { preferences ->
         //initial value(if value null) preferences[key] ?:true(value)
         preferences[IS_FIRST_TIME_LOGIN] ?: true
     }
