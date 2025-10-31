@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Presentation.OnboardingScreen
+package com.store.ecommerceapplication.presentation.onboardingScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -23,27 +23,25 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.store.ecommerceapplication.Navigation.Routes
+import com.store.ecommerceapplication.navigation.Routes
 import com.store.ecommerceapplication.R
 
 @Composable
-fun SecondInterScreen(navHostController: NavHostController) {
+fun FristInterScreen(navHostController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 20.dp),
-        verticalArrangement = Arrangement.SpaceBetween
+            .padding(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Top Section - Page indicator and Skip button
+        // Top Row with Skip and 1/3
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 30.dp),
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "2/3",
+                text = "1/3",
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -55,51 +53,52 @@ fun SecondInterScreen(navHostController: NavHostController) {
                     navHostController.navigate(Routes.LoginScreen)
                 }
             )
+
         }
 
-        // Middle Section - Image, Title, and Description
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            // Image
-            Image(
-                painter = painterResource(R.drawable.e2),
-                contentDescription = "",
-                contentScale = ContentScale.Fit,
-                modifier = Modifier.size(height = 350.dp, width = 350.dp)
-            )
+        // Spacer to push content to center
+        Spacer(modifier = Modifier.weight(1f))
 
-            Spacer(modifier = Modifier.height(40.dp))
+        // Image
+        Image(
+            painter = painterResource(R.drawable.eone),
+            contentDescription = "",
+            contentScale = ContentScale.Fit,
+            modifier = Modifier.size(height = 350.dp, width = 350.dp)
+        )
 
-            // Title
-            Text(
-                text = "Make Payment",
-                fontSize = 26.sp,
-                fontWeight = FontWeight.Bold
-            )
+        // Spacer between image and title
+        Spacer(modifier = Modifier.height(32.dp))
 
-            Spacer(modifier = Modifier.height(24.dp))
+        // Title
+        Text(
+            text = "Choose Products",
+            fontSize = 26.sp,
+            fontWeight = FontWeight.Bold
+        )
 
-            // Description
-            Text(
-                text = "Secure and easy payments. Complete your purchase" +
-                        " with confidence, knowing your transactions are protected every step of the way",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                lineHeight = 24.sp,
-                color = Color.Gray,
-                modifier = Modifier.padding(horizontal = 16.dp)
-            )
-        }
+        // Spacer between title and description
+        Spacer(modifier = Modifier.height(24.dp))
 
-        // Bottom Section - Next button
+        // Description
+        Text(
+            text = "Discover a world of choices! Our app makes finding\n" +
+                    "your perfect products simple and enjoyable.\n" +
+                    "Browse effortlessly and pick what you love.",
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
+            lineHeight = 24.sp,
+            color = Color.Gray,
+            modifier = Modifier.padding(horizontal = 16.dp)
+        )
+
+        // Spacer to push Next button to bottom
+        Spacer(modifier = Modifier.weight(1f))
+
+        // Bottom Row with Next button
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 30.dp),
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.End
         ) {
             Text(
@@ -107,7 +106,7 @@ fun SecondInterScreen(navHostController: NavHostController) {
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.clickable {
-                    navHostController.navigate(Routes.OnboardingScreen3)
+                    navHostController.navigate(Routes.OnboardingScreen2)
                 }
             )
         }

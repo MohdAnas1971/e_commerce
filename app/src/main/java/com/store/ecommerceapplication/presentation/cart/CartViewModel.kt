@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Presentation.Cart
+package com.store.ecommerceapplication.presentation.cart
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

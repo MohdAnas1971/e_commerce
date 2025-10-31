@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Presentation.Wishlist
+package com.store.ecommerceapplication.presentation.wishlist
 
 import android.content.Intent
 import androidx.compose.foundation.Image
@@ -37,7 +37,7 @@ import androidx.navigation.NavController
 import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.store.ecommerceapplication.Navigation.Routes
+import com.store.ecommerceapplication.navigation.Routes
 import com.store.ecommerceapplication.R
 import com.store.ecommerceapplication.domain.model.Product
 import kotlin.math.roundToInt

@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Presentation.Cart
+package com.store.ecommerceapplication.presentation.cart
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -32,7 +32,7 @@ import androidx.navigation.NavController
 import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.store.ecommerceapplication.Navigation.Routes
+import com.store.ecommerceapplication.navigation.Routes
 import com.store.ecommerceapplication.R
 import com.store.ecommerceapplication.domain.model.CartItem
 import kotlin.math.roundToInt

@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Presentation.Wishlist
+package com.store.ecommerceapplication.presentation.wishlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

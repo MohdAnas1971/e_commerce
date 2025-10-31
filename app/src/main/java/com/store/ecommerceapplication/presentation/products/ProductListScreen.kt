@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Presentation.Products
+package com.store.ecommerceapplication.presentation.products
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -44,9 +44,9 @@ import androidx.navigation.NavHostController
 import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.store.ecommerceapplication.Navigation.Routes
-import com.store.ecommerceapplication.Presentation.Components.BottomNavItem
-import com.store.ecommerceapplication.Presentation.Components.BottomNavigationBar
+import com.store.ecommerceapplication.navigation.Routes
+import com.store.ecommerceapplication.presentation.components.BottomNavItem
+import com.store.ecommerceapplication.presentation.components.BottomNavigationBar
 import com.store.ecommerceapplication.R
 import com.store.ecommerceapplication.domain.model.Product
 import com.store.ecommerceapplication.domain.util.Result

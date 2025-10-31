@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Presentation.Products
+package com.store.ecommerceapplication.presentation.products
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

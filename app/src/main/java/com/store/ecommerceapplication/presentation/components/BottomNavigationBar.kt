@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Presentation.Components
+package com.store.ecommerceapplication.presentation.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

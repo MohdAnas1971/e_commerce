@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Presentation.Auth
+package com.store.ecommerceapplication.presentation.auth
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -42,7 +42,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.store.ecommerceapplication.Navigation.Routes
+import com.store.ecommerceapplication.navigation.Routes
 import com.store.ecommerceapplication.R
 import com.store.ecommerceapplication.domain.util.Result
 

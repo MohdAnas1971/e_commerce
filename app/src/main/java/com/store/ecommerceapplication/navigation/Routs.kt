@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Navigation
+package com.store.ecommerceapplication.navigation
 
 import kotlinx.serialization.Serializable
 

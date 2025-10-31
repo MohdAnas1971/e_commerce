@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Navigation
+package com.store.ecommerceapplication.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -8,18 +8,18 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.store.ecommerceapplication.Presentation.Auth.ForgotPasswordScreen
-import com.store.ecommerceapplication.Presentation.Auth.LoginScreen
-import com.store.ecommerceapplication.Presentation.Auth.SignupScreen
-import com.store.ecommerceapplication.Presentation.Cart.CartScreen
-import com.store.ecommerceapplication.Presentation.OnboardingScreen.FristInterScreen
-import com.store.ecommerceapplication.Presentation.OnboardingScreen.SecondInterScreen
-import com.store.ecommerceapplication.Presentation.OnboardingScreen.ThirdInterScreen
-import com.store.ecommerceapplication.Presentation.Products.ProductDetailScreen
-import com.store.ecommerceapplication.Presentation.Products.ProductListScreen
-import com.store.ecommerceapplication.Presentation.Splash.SplashScreen
-import com.store.ecommerceapplication.Presentation.UserPreferences.UserPreferencesViewModel
-import com.store.ecommerceapplication.Presentation.Wishlist.WishlistScreen
+import com.store.ecommerceapplication.presentation.auth.ForgotPasswordScreen
+import com.store.ecommerceapplication.presentation.auth.LoginScreen
+import com.store.ecommerceapplication.presentation.auth.SignupScreen
+import com.store.ecommerceapplication.presentation.cart.CartScreen
+import com.store.ecommerceapplication.presentation.onboardingScreen.FristInterScreen
+import com.store.ecommerceapplication.presentation.onboardingScreen.SecondInterScreen
+import com.store.ecommerceapplication.presentation.onboardingScreen.ThirdInterScreen
+import com.store.ecommerceapplication.presentation.products.ProductDetailScreen
+import com.store.ecommerceapplication.presentation.products.ProductListScreen
+import com.store.ecommerceapplication.presentation.splash.SplashScreen
+import com.store.ecommerceapplication.presentation.userPreferences.UserPreferencesViewModel
+import com.store.ecommerceapplication.presentation.wishlist.WishlistScreen
 
 @Composable
 fun AppNavigation() {

@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Presentation.OnboardingScreen
+package com.store.ecommerceapplication.presentation.onboardingScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -23,11 +23,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.store.ecommerceapplication.Navigation.Routes
+import com.store.ecommerceapplication.navigation.Routes
 import com.store.ecommerceapplication.R
 
 @Composable
-fun ThirdInterScreen(navHostController: NavHostController) {
+fun SecondInterScreen(navHostController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -43,7 +43,7 @@ fun ThirdInterScreen(navHostController: NavHostController) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "3/3",
+                text = "2/3",
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -65,7 +65,7 @@ fun ThirdInterScreen(navHostController: NavHostController) {
         ) {
             // Image
             Image(
-                painter = painterResource(R.drawable.e3),
+                painter = painterResource(R.drawable.e2),
                 contentDescription = "",
                 contentScale = ContentScale.Fit,
                 modifier = Modifier.size(height = 350.dp, width = 350.dp)
@@ -75,7 +75,7 @@ fun ThirdInterScreen(navHostController: NavHostController) {
 
             // Title
             Text(
-                text = "Get Your Order",
+                text = "Make Payment",
                 fontSize = 26.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -84,7 +84,8 @@ fun ThirdInterScreen(navHostController: NavHostController) {
 
             // Description
             Text(
-                text = "Your order, delivered right to your door.\n Experience fast and reliable delivery, bringing your favorite items to you quickly",
+                text = "Secure and easy payments. Complete your purchase" +
+                        " with confidence, knowing your transactions are protected every step of the way",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
@@ -106,7 +107,7 @@ fun ThirdInterScreen(navHostController: NavHostController) {
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.clickable {
-                    navHostController.navigate(Routes.LoginScreen)
+                    navHostController.navigate(Routes.OnboardingScreen3)
                 }
             )
         }

@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Presentation.Products
+package com.store.ecommerceapplication.presentation.products
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -31,8 +31,8 @@ import androidx.navigation.NavHostController
 import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.store.ecommerceapplication.Presentation.Cart.CartViewModel
-import com.store.ecommerceapplication.Presentation.Wishlist.WishlistViewModel
+import com.store.ecommerceapplication.presentation.cart.CartViewModel
+import com.store.ecommerceapplication.presentation.wishlist.WishlistViewModel
 import com.store.ecommerceapplication.domain.model.Product
 import com.store.ecommerceapplication.domain.util.Result
 import kotlinx.coroutines.launch

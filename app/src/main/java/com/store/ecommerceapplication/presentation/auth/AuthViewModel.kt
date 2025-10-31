@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Presentation.Auth
+package com.store.ecommerceapplication.presentation.auth
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Presentation.UserPreferences
+package com.store.ecommerceapplication.presentation.userPreferences
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

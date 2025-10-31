@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Presentation.Auth
+package com.store.ecommerceapplication.presentation.auth
 
 import android.app.Activity
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -51,7 +51,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
-import com.store.ecommerceapplication.Navigation.Routes
+import com.store.ecommerceapplication.navigation.Routes
 import com.store.ecommerceapplication.R
 import com.store.ecommerceapplication.domain.util.Result
 import com.store.ecommerceapplication.utils.GoogleSignInHelper

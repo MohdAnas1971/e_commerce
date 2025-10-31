@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Presentation.Splash
+package com.store.ecommerceapplication.presentation.splash
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween

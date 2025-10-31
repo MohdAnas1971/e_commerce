@@ -1,4 +1,4 @@
-package com.store.ecommerceapplication.Presentation.OnboardingScreen
+package com.store.ecommerceapplication.presentation.onboardingScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -23,25 +23,27 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.store.ecommerceapplication.Navigation.Routes
+import com.store.ecommerceapplication.navigation.Routes
 import com.store.ecommerceapplication.R
 
 @Composable
-fun FristInterScreen(navHostController: NavHostController) {
+fun ThirdInterScreen(navHostController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(horizontal = 20.dp),
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
-        // Top Row with Skip and 1/3
+        // Top Section - Page indicator and Skip button
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 30.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "1/3",
+                text = "3/3",
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -53,52 +55,50 @@ fun FristInterScreen(navHostController: NavHostController) {
                     navHostController.navigate(Routes.LoginScreen)
                 }
             )
-
         }
 
-        // Spacer to push content to center
-        Spacer(modifier = Modifier.weight(1f))
-
-        // Image
-        Image(
-            painter = painterResource(R.drawable.eone),
-            contentDescription = "",
-            contentScale = ContentScale.Fit,
-            modifier = Modifier.size(height = 350.dp, width = 350.dp)
-        )
-
-        // Spacer between image and title
-        Spacer(modifier = Modifier.height(32.dp))
-
-        // Title
-        Text(
-            text = "Choose Products",
-            fontSize = 26.sp,
-            fontWeight = FontWeight.Bold
-        )
-
-        // Spacer between title and description
-        Spacer(modifier = Modifier.height(24.dp))
-
-        // Description
-        Text(
-            text = "Discover a world of choices! Our app makes finding\n" +
-                    "your perfect products simple and enjoyable.\n" +
-                    "Browse effortlessly and pick what you love.",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            lineHeight = 24.sp,
-            color = Color.Gray,
-            modifier = Modifier.padding(horizontal = 16.dp)
-        )
-
-        // Spacer to push Next button to bottom
-        Spacer(modifier = Modifier.weight(1f))
-
-        // Bottom Row with Next button
-        Row(
+        // Middle Section - Image, Title, and Description
+        Column(
             modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            // Image
+            Image(
+                painter = painterResource(R.drawable.e3),
+                contentDescription = "",
+                contentScale = ContentScale.Fit,
+                modifier = Modifier.size(height = 350.dp, width = 350.dp)
+            )
+
+            Spacer(modifier = Modifier.height(40.dp))
+
+            // Title
+            Text(
+                text = "Get Your Order",
+                fontSize = 26.sp,
+                fontWeight = FontWeight.Bold
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // Description
+            Text(
+                text = "Your order, delivered right to your door.\n Experience fast and reliable delivery, bringing your favorite items to you quickly",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                lineHeight = 24.sp,
+                color = Color.Gray,
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+        }
+
+        // Bottom Section - Next button
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 30.dp),
             horizontalArrangement = Arrangement.End
         ) {
             Text(
@@ -106,7 +106,7 @@ fun FristInterScreen(navHostController: NavHostController) {
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.clickable {
-                    navHostController.navigate(Routes.OnboardingScreen2)
+                    navHostController.navigate(Routes.LoginScreen)
                 }
             )
         }
