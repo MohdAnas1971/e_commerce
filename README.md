@@ -21,9 +21,9 @@
   <a href="https://github.com/MohdAnas1971/e_commerce/network/members">
     <img alt="GitHub forks" src="https://img.shields.io/github/forks/MohdAnas1971/e_commerce?style=for-the-badge" />
   </a>
-  <a href="LICENSE">
-    <img alt="License" src="https://img.shields.io/github/license/MohdAnas1971/e_commerce?style=for-the-badge" />
-  </a>
+ <a href="LICENSE">
+  <img alt="License" src="https://img.shields.io/github/license/MohdAnas1971/e_commerce?style=for-the-badge" />
+</a>
   <img alt="Made with ❤️" src="https://img.shields.io/badge/Made%20with-%E2%9D%A4-red?style=for-the-badge" />
 </p>
 
